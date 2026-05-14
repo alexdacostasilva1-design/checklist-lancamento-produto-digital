@@ -1,0 +1,1294 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Checklist de Lançamento de Produto Digital</title>
+<link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;1,9..40,300&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg: #0a0a0f;
+    --surface: #12121a;
+    --surface2: #1a1a26;
+    --border: rgba(255,255,255,0.07);
+    --border2: rgba(255,255,255,0.12);
+    --text: #f0eff8;
+    --muted: #8a8a9f;
+    --accent: #7c6af5;
+    --accent2: #5dd4b0;
+    --accent3: #f5a05d;
+    --red: #f56a6a;
+    --phase1: #7c6af5;
+    --phase2: #5dd4b0;
+    --phase3: #f5a05d;
+    --phase4: #f56a91;
+    --phase5: #6ab4f5;
+    --phase6: #a8f56a;
+  }
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body {
+    font-family: 'DM Sans', sans-serif;
+    background: var(--bg);
+    color: var(--text);
+    min-height: 100vh;
+    font-size: 13px;
+    line-height: 1.5;
+  }
+  .wrapper { max-width: 1400px; margin: 0 auto; padding: 48px 32px 80px; }
+
+  /* HEADER */
+  .header { text-align: center; margin-bottom: 60px; position: relative; }
+  .header::before {
+    content: '';
+    position: absolute;
+    top: -20px; left: 50%;
+    transform: translateX(-50%);
+    width: 600px; height: 300px;
+    background: radial-gradient(ellipse at center, rgba(124,106,245,0.12) 0%, transparent 70%);
+    pointer-events: none;
+  }
+  .badge {
+    display: inline-block;
+    font-family: 'Syne', sans-serif;
+    font-size: 11px;
+    font-weight: 600;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: var(--accent);
+    background: rgba(124,106,245,0.1);
+    border: 1px solid rgba(124,106,245,0.25);
+    padding: 6px 16px;
+    border-radius: 100px;
+    margin-bottom: 20px;
+  }
+  h1 {
+    font-family: 'Syne', sans-serif;
+    font-size: clamp(32px, 5vw, 56px);
+    font-weight: 800;
+    line-height: 1.05;
+    margin-bottom: 16px;
+    background: linear-gradient(135deg, #f0eff8 30%, #7c6af5);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+  .subtitle {
+    font-size: 15px;
+    color: var(--muted);
+    max-width: 560px;
+    margin: 0 auto 32px;
+    line-height: 1.7;
+  }
+  .stats-row {
+    display: flex;
+    justify-content: center;
+    gap: 32px;
+    flex-wrap: wrap;
+  }
+  .stat {
+    text-align: center;
+  }
+  .stat-n {
+    font-family: 'Syne', sans-serif;
+    font-size: 28px;
+    font-weight: 800;
+    color: var(--accent);
+    display: block;
+  }
+  .stat-l {
+    font-size: 11px;
+    color: var(--muted);
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+  }
+
+  /* PHASE NAV */
+  .phase-nav {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    margin-bottom: 40px;
+    justify-content: center;
+  }
+  .phase-pill {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    padding: 8px 16px;
+    border-radius: 100px;
+    border: 1px solid var(--border2);
+    background: var(--surface);
+    font-family: 'Syne', sans-serif;
+    font-size: 11px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.2s;
+    text-decoration: none;
+    color: var(--muted);
+  }
+  .phase-pill:hover { background: var(--surface2); color: var(--text); }
+  .phase-dot { width: 8px; height: 8px; border-radius: 50%; flex-shrink: 0; }
+
+  /* PHASE SECTIONS */
+  .phase-section { margin-bottom: 48px; }
+  .phase-header {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    margin-bottom: 16px;
+    padding-bottom: 16px;
+    border-bottom: 1px solid var(--border);
+  }
+  .phase-num {
+    font-family: 'Syne', sans-serif;
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 0.1em;
+    color: #fff;
+    background: var(--phase-color);
+    width: 32px; height: 32px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+  }
+  .phase-title {
+    font-family: 'Syne', sans-serif;
+    font-size: 18px;
+    font-weight: 700;
+    color: var(--text);
+  }
+  .phase-count {
+    margin-left: auto;
+    font-size: 11px;
+    color: var(--muted);
+    background: var(--surface2);
+    padding: 4px 10px;
+    border-radius: 100px;
+    border: 1px solid var(--border);
+  }
+
+  /* TABLE */
+  .table-wrap { overflow-x: auto; border-radius: 12px; border: 1px solid var(--border); }
+  table {
+    width: 100%;
+    border-collapse: collapse;
+    min-width: 900px;
+  }
+  thead tr {
+    background: var(--surface2);
+  }
+  th {
+    font-family: 'Syne', sans-serif;
+    font-size: 10px;
+    font-weight: 600;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--muted);
+    padding: 12px 14px;
+    text-align: left;
+    border-bottom: 1px solid var(--border);
+    white-space: nowrap;
+  }
+  td {
+    padding: 14px 14px;
+    vertical-align: top;
+    border-bottom: 1px solid var(--border);
+    font-size: 12.5px;
+  }
+  tr:last-child td { border-bottom: none; }
+  tbody tr { background: var(--surface); transition: background 0.15s; }
+  tbody tr:hover { background: var(--surface2); }
+  tbody tr:nth-child(odd) { background: rgba(255,255,255,0.01); }
+  tbody tr:nth-child(odd):hover { background: var(--surface2); }
+
+  /* TASK NAME */
+  .task-name {
+    font-family: 'Syne', sans-serif;
+    font-size: 12px;
+    font-weight: 600;
+    color: var(--text);
+    margin-bottom: 3px;
+  }
+  .task-desc {
+    font-size: 11.5px;
+    color: var(--muted);
+    line-height: 1.5;
+    max-width: 280px;
+  }
+
+  /* PRIORITY */
+  .priority {
+    display: inline-flex;
+    align-items: center;
+    gap: 5px;
+    font-size: 10.5px;
+    font-weight: 600;
+    font-family: 'Syne', sans-serif;
+    padding: 3px 10px;
+    border-radius: 100px;
+    letter-spacing: 0.04em;
+    white-space: nowrap;
+  }
+  .priority-dot { width: 5px; height: 5px; border-radius: 50%; }
+  .p-alta { background: rgba(245,106,106,0.12); color: #f56a6a; }
+  .p-alta .priority-dot { background: #f56a6a; }
+  .p-media { background: rgba(245,160,93,0.12); color: #f5a05d; }
+  .p-media .priority-dot { background: #f5a05d; }
+  .p-baixa { background: rgba(93,212,176,0.12); color: #5dd4b0; }
+  .p-baixa .priority-dot { background: #5dd4b0; }
+
+  /* TOOL BADGE */
+  .tool {
+    display: inline-block;
+    font-size: 11px;
+    font-weight: 500;
+    color: var(--accent2);
+    background: rgba(93,212,176,0.08);
+    border: 1px solid rgba(93,212,176,0.15);
+    padding: 3px 9px;
+    border-radius: 6px;
+    white-space: nowrap;
+  }
+
+  /* TIME */
+  .time {
+    font-size: 12px;
+    color: var(--text);
+    white-space: nowrap;
+    font-weight: 500;
+  }
+  .time-icon { font-size: 11px; color: var(--muted); }
+
+  /* ERROR */
+  .error-cell {
+    font-size: 11.5px;
+    color: #f59090;
+    max-width: 200px;
+    line-height: 1.45;
+    font-style: italic;
+  }
+  .error-cell::before {
+    content: '⚠ ';
+    font-style: normal;
+    opacity: 0.7;
+  }
+
+  /* CHECKBOX */
+  .cb {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  .cb input[type=checkbox] {
+    width: 18px; height: 18px;
+    accent-color: var(--accent);
+    cursor: pointer;
+    border-radius: 4px;
+  }
+
+  /* DIVIDER */
+  .section-divider {
+    height: 1px;
+    background: linear-gradient(90deg, transparent, var(--border2), transparent);
+    margin: 60px 0;
+  }
+
+  /* EXTRAS */
+  .extras-title {
+    font-family: 'Syne', sans-serif;
+    font-size: 24px;
+    font-weight: 800;
+    margin-bottom: 8px;
+  }
+  .extras-sub { font-size: 13px; color: var(--muted); margin-bottom: 32px; }
+  .number-badge {
+    font-family: 'Syne', sans-serif;
+    font-size: 11px;
+    font-weight: 700;
+    color: var(--accent);
+    background: rgba(124,106,245,0.1);
+    border: 1px solid rgba(124,106,245,0.2);
+    width: 26px; height: 26px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+  }
+
+  /* ERRORS LIST */
+  .errors-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+    gap: 12px;
+    margin-bottom: 48px;
+  }
+  .error-card {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-left: 3px solid var(--red);
+    border-radius: 10px;
+    padding: 16px;
+    display: flex;
+    gap: 14px;
+    align-items: flex-start;
+  }
+  .error-card-title {
+    font-family: 'Syne', sans-serif;
+    font-size: 12.5px;
+    font-weight: 700;
+    color: var(--text);
+    margin-bottom: 5px;
+  }
+  .error-card-desc {
+    font-size: 11.5px;
+    color: var(--muted);
+    line-height: 1.5;
+  }
+
+  /* TIMELINE */
+  .timeline { position: relative; padding-left: 0; margin-bottom: 48px; }
+  .timeline-week {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    padding: 20px 24px;
+    margin-bottom: 12px;
+    display: flex;
+    gap: 20px;
+    align-items: flex-start;
+  }
+  .week-label {
+    font-family: 'Syne', sans-serif;
+    font-size: 11px;
+    font-weight: 700;
+    color: var(--accent);
+    background: rgba(124,106,245,0.1);
+    border: 1px solid rgba(124,106,245,0.2);
+    padding: 4px 12px;
+    border-radius: 100px;
+    white-space: nowrap;
+    flex-shrink: 0;
+    margin-top: 2px;
+  }
+  .week-content-title {
+    font-family: 'Syne', sans-serif;
+    font-size: 13px;
+    font-weight: 700;
+    color: var(--text);
+    margin-bottom: 4px;
+  }
+  .week-tasks {
+    font-size: 12px;
+    color: var(--muted);
+    line-height: 1.7;
+  }
+  .week-tasks span {
+    display: inline-block;
+    background: var(--surface2);
+    border: 1px solid var(--border);
+    border-radius: 6px;
+    padding: 2px 8px;
+    margin: 2px 3px 2px 0;
+    font-size: 11px;
+    color: var(--text);
+  }
+
+  /* STACK */
+  .stack-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+    gap: 20px;
+    margin-bottom: 48px;
+  }
+  .stack-card {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    padding: 20px;
+    position: relative;
+    overflow: hidden;
+  }
+  .stack-card::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0; right: 0;
+    height: 3px;
+  }
+  .stack-card.iniciante::before { background: var(--accent2); }
+  .stack-card.intermediario::before { background: var(--accent); }
+  .stack-card.avancado::before { background: var(--phase4); }
+  .stack-level {
+    font-family: 'Syne', sans-serif;
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    margin-bottom: 16px;
+  }
+  .stack-level.iniciante { color: var(--accent2); }
+  .stack-level.intermediario { color: var(--accent); }
+  .stack-level.avancado { color: var(--phase4); }
+  .stack-item {
+    display: flex;
+    align-items: flex-start;
+    gap: 10px;
+    margin-bottom: 10px;
+  }
+  .stack-item-icon {
+    width: 28px; height: 28px;
+    border-radius: 6px;
+    background: var(--surface2);
+    border: 1px solid var(--border);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 13px;
+    flex-shrink: 0;
+  }
+  .stack-item-name {
+    font-family: 'Syne', sans-serif;
+    font-size: 12px;
+    font-weight: 600;
+    color: var(--text);
+  }
+  .stack-item-use {
+    font-size: 11px;
+    color: var(--muted);
+  }
+
+  /* CONCLUSION */
+  .conclusion {
+    background: linear-gradient(135deg, rgba(124,106,245,0.08), rgba(93,212,176,0.05));
+    border: 1px solid rgba(124,106,245,0.2);
+    border-radius: 16px;
+    padding: 40px;
+    text-align: center;
+  }
+  .conclusion-title {
+    font-family: 'Syne', sans-serif;
+    font-size: 22px;
+    font-weight: 800;
+    margin-bottom: 12px;
+    background: linear-gradient(135deg, #f0eff8, #7c6af5);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+  .conclusion-text {
+    font-size: 14px;
+    color: var(--muted);
+    max-width: 600px;
+    margin: 0 auto 24px;
+    line-height: 1.8;
+  }
+  .cta-btn {
+    display: inline-block;
+    font-family: 'Syne', sans-serif;
+    font-size: 13px;
+    font-weight: 700;
+    color: #fff;
+    background: var(--accent);
+    padding: 12px 28px;
+    border-radius: 100px;
+    text-decoration: none;
+    letter-spacing: 0.04em;
+    cursor: pointer;
+    border: none;
+    transition: opacity 0.2s;
+  }
+  .cta-btn:hover { opacity: 0.85; }
+
+  /* FOOTER */
+  .footer {
+    text-align: center;
+    margin-top: 60px;
+    font-size: 11px;
+    color: var(--muted);
+  }
+
+  @media print {
+    body { background: white; color: #111; }
+    .table-wrap { border: 1px solid #ddd; }
+    td, th { border-color: #ddd; }
+  }
+  @media (max-width: 768px) {
+    .wrapper { padding: 24px 16px 60px; }
+  }
+</style>
+</head>
+<body>
+<div class="wrapper">
+
+  <!-- HEADER -->
+  <div class="header">
+    <div class="badge">Playbook Premium · Edição 2026</div>
+    <h1>Checklist de Lançamento<br>de Produto Digital</h1>
+    <p class="subtitle">O guia definitivo com 42 tarefas estratégicas para lançar seu produto digital do zero — ebook, curso, mentoria, comunidade ou workshop.</p>
+    <div class="stats-row">
+      <div class="stat"><span class="stat-n">42</span><span class="stat-l">Tarefas</span></div>
+      <div class="stat"><span class="stat-n">6</span><span class="stat-l">Fases</span></div>
+      <div class="stat"><span class="stat-n">30</span><span class="stat-l">Dias de Plano</span></div>
+      <div class="stat"><span class="stat-n">10</span><span class="stat-l">Erros Fatais</span></div>
+    </div>
+  </div>
+
+  <!-- PHASE NAV -->
+  <div class="phase-nav">
+    <a href="#fase1" class="phase-pill"><span class="phase-dot" style="background:var(--phase1)"></span> Criação do Produto</a>
+    <a href="#fase2" class="phase-pill"><span class="phase-dot" style="background:var(--phase2)"></span> Configuração Hotmart</a>
+    <a href="#fase3" class="phase-pill"><span class="phase-dot" style="background:var(--phase3)"></span> Página de Vendas</a>
+    <a href="#fase4" class="phase-pill"><span class="phase-dot" style="background:var(--phase4)"></span> Pré-Lançamento</a>
+    <a href="#fase5" class="phase-pill"><span class="phase-dot" style="background:var(--phase5)"></span> Semana de Lançamento</a>
+    <a href="#fase6" class="phase-pill"><span class="phase-dot" style="background:var(--phase6)"></span> Pós-Lançamento</a>
+  </div>
+
+  <!-- ===== FASE 1 ===== -->
+  <div class="phase-section" id="fase1">
+    <div class="phase-header">
+      <div class="phase-num" style="--phase-color:var(--phase1)">1</div>
+      <div>
+        <div class="phase-title">Criação do Produto</div>
+      </div>
+      <div class="phase-count">8 tarefas · Semanas 1–2</div>
+    </div>
+    <div class="table-wrap">
+      <table>
+        <thead><tr>
+          <th style="width:36px">Status</th>
+          <th style="width:200px">O que fazer</th>
+          <th style="width:90px">Tempo est.</th>
+          <th style="width:130px">Ferramenta</th>
+          <th style="width:90px">Prioridade</th>
+          <th>Erro comum</th>
+        </tr></thead>
+        <tbody>
+          <tr>
+            <td class="cb"><input type="checkbox"></td>
+            <td><div class="task-name">Definir a promessa central</div><div class="task-desc">Escreva em 1 frase o resultado específico e mensurável que seu produto entrega. Ex.: "Sair do zero a R$5k em 60 dias."</div></td>
+            <td class="time">⏱ 2h</td>
+            <td><span class="tool">Notion</span></td>
+            <td><span class="priority p-alta"><span class="priority-dot"></span>Alta</span></td>
+            <td class="error-cell">Prometer transformações vagas como "mudar sua vida" sem resultado específico.</td>
+          </tr>
+          <tr>
+            <td class="cb"><input type="checkbox"></td>
+            <td><div class="task-name">Mapear o avatar ideal</div><div class="task-desc">Defina o perfil exato do comprador: dores, desejos, objeções, renda, plataformas que usa e vocabulário que utiliza.</div></td>
+            <td class="time">⏱ 3h</td>
+            <td><span class="tool">ChatGPT + Notion</span></td>
+            <td><span class="priority p-alta"><span class="priority-dot"></span>Alta</span></td>
+            <td class="error-cell">Criar um produto genérico tentando atingir "todo mundo".</td>
+          </tr>
+          <tr>
+            <td class="cb"><input type="checkbox"></td>
+            <td><div class="task-name">Escolher nome e posicionamento</div><div class="task-desc">Crie 3 opções de nome e valide com 5 pessoas do seu avatar. O nome deve comunicar o resultado, não o método.</div></td>
+            <td class="time">⏱ 2h</td>
+            <td><span class="tool">ChatGPT + Canva</span></td>
+            <td><span class="priority p-alta"><span class="priority-dot"></span>Alta</span></td>
+            <td class="error-cell">Usar nomes genéricos ou termos técnicos que o cliente não entende.</td>
+          </tr>
+          <tr>
+            <td class="cb"><input type="checkbox"></td>
+            <td><div class="task-name">Estruturar o conteúdo/módulos</div><div class="task-desc">Organize o conteúdo em módulos sequenciais com trilha de aprendizado clara. Use a lógica: Problema → Solução → Resultado.</div></td>
+            <td class="time">⏱ 4h</td>
+            <td><span class="tool">Notion + ClickUp</span></td>
+            <td><span class="priority p-alta"><span class="priority-dot"></span>Alta</span></td>
+            <td class="error-cell">Colocar conteúdo demais sem foco no resultado prometido.</td>
+          </tr>
+          <tr>
+            <td class="cb"><input type="checkbox"></td>
+            <td><div class="task-name">Produzir o conteúdo principal</div><div class="task-desc">Grave as aulas, escreva o ebook ou estruture a mentoria. Mantenha episódios curtos (máx. 20 min) e objetivos.</div></td>
+            <td class="time">⏱ 8–30h</td>
+            <td><span class="tool">Loom / OBS / Canva</span></td>
+            <td><span class="priority p-alta"><span class="priority-dot"></span>Alta</span></td>
+            <td class="error-cell">Adiar a gravação esperando o equipamento ou cenário "perfeito".</td>
+          </tr>
+          <tr>
+            <td class="cb"><input type="checkbox"></td>
+            <td><div class="task-name">Definir o formato de entrega</div><div class="task-desc">Decida se a entrega será via área de membros, PDF, WhatsApp, ao vivo ou híbrido. Teste o acesso antes de vender.</div></td>
+            <td class="time">⏱ 1h</td>
+            <td><span class="tool">Hotmart / Notion</span></td>
+            <td><span class="priority p-media"><span class="priority-dot"></span>Média</span></td>
+            <td class="error-cell">Deixar o cliente sem acesso imediato após a compra.</td>
+          </tr>
+          <tr>
+            <td class="cb"><input type="checkbox"></td>
+            <td><div class="task-name">Criar bônus estratégicos</div><div class="task-desc">Adicione 2–3 bônus que removam objeções específicas. Ex.: se o avatar tem medo de não ter tempo, crie um "guia de 15 minutos por dia".</div></td>
+            <td class="time">⏱ 4h</td>
+            <td><span class="tool">Canva + ChatGPT</span></td>
+            <td><span class="priority p-media"><span class="priority-dot"></span>Média</span></td>
+            <td class="error-cell">Colocar bônus aleatórios sem relação com as objeções do avatar.</td>
+          </tr>
+          <tr>
+            <td class="cb"><input type="checkbox"></td>
+            <td><div class="task-name">Definir precificação e modelo</div><div class="task-desc">Pesquise concorrentes, calcule o valor percebido e defina o preço. Considere parcelamento, downsell e oferta de lançamento.</div></td>
+            <td class="time">⏱ 2h</td>
+            <td><span class="tool">Google Sheets</span></td>
+            <td><span class="priority p-alta"><span class="priority-dot"></span>Alta</span></td>
+            <td class="error-cell">Precificar pelo custo de produção, não pelo valor entregue.</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+  <!-- ===== FASE 2 ===== -->
+  <div class="phase-section" id="fase2">
+    <div class="phase-header">
+      <div class="phase-num" style="--phase-color:var(--phase2)">2</div>
+      <div>
+        <div class="phase-title">Configuração na Hotmart</div>
+      </div>
+      <div class="phase-count">7 tarefas · Semana 2</div>
+    </div>
+    <div class="table-wrap">
+      <table>
+        <thead><tr>
+          <th style="width:36px">Status</th>
+          <th style="width:200px">O que fazer</th>
+          <th style="width:90px">Tempo est.</th>
+          <th style="width:130px">Ferramenta</th>
+          <th style="width:90px">Prioridade</th>
+          <th>Erro comum</th>
+        </tr></thead>
+        <tbody>
+          <tr>
+            <td class="cb"><input type="checkbox"></td>
+            <td><div class="task-name">Cadastrar o produto na Hotmart</div><div class="task-desc">Crie o produto, preencha todas as informações, faça upload da capa e configure a categoria correta para ranqueamento orgânico.</div></td>
+            <td class="time">⏱ 1h</td>
+            <td><span class="tool">Hotmart</span></td>
+            <td><span class="priority p-alta"><span class="priority-dot"></span>Alta</span></td>
+            <td class="error-cell">Deixar a descrição do produto vaga ou sem palavras-chave relevantes.</td>
+          </tr>
+          <tr>
+            <td class="cb"><input type="checkbox"></td>
+            <td><div class="task-name">Configurar a área de membros</div><div class="task-desc">Organize os módulos na ordem correta, faça upload de todos os conteúdos e configure a liberação gradual se necessário.</div></td>
+            <td class="time">⏱ 3h</td>
+            <td><span class="tool">Hotmart Club</span></td>
+            <td><span class="priority p-alta"><span class="priority-dot"></span>Alta</span></td>
+            <td class="error-cell">Subir conteúdo desordenado sem testar o fluxo de acesso do aluno.</td>
+          </tr>
+          <tr>
+            <td class="cb"><input type="checkbox"></td>
+            <td><div class="task-name">Configurar e personalizar o checkout</div><div class="task-desc">Configure o order bump, 2 opções de pagamento mínimo, prazo de parcelamento e ative o checkout inteligente da Hotmart.</div></td>
+            <td class="time">⏱ 1h</td>
+            <td><span class="tool">Hotmart</span></td>
+            <td><span class="priority p-alta"><span class="priority-dot"></span>Alta</span></td>
+            <td class="error-cell">Não testar o fluxo completo de compra antes do lançamento.</td>
+          </tr>
+          <tr>
+            <td class="cb"><input type="checkbox"></td>
+            <td><div class="task-name">Instalar o pixel e integrações</div><div class="task-desc">Configure o Meta Pixel, Google Tag Manager e qualquer plataforma de email (ActiveCampaign, ConvertKit) via webhook da Hotmart.</div></td>
+            <td class="time">⏱ 2h</td>
+            <td><span class="tool">Hotmart + Meta Ads</span></td>
+            <td><span class="priority p-alta"><span class="priority-dot"></span>Alta</span></td>
+            <td class="error-cell">Lançar anúncios sem o pixel ativo, perdendo todos os dados de compra.</td>
+          </tr>
+          <tr>
+            <td class="cb"><input type="checkbox"></td>
+            <td><div class="task-name">Criar automações de email pós-compra</div><div class="task-desc">Configure o email de boas-vindas, link de acesso e sequência de onboarding (3 a 5 emails nos primeiros 7 dias).</div></td>
+            <td class="time">⏱ 2h</td>
+            <td><span class="tool">ConvertKit / Hotmart</span></td>
+            <td><span class="priority p-media"><span class="priority-dot"></span>Média</span></td>
+            <td class="error-cell">Deixar o aluno sem comunicação após a compra, gerando chargebacks.</td>
+          </tr>
+          <tr>
+            <td class="cb"><input type="checkbox"></td>
+            <td><div class="task-name">Abrir programa de afiliados</div><div class="task-desc">Defina comissão (30–50% é padrão para infoprodutos), crie materiais de divulgação e convide afiliados estratégicos.</div></td>
+            <td class="time">⏱ 1h</td>
+            <td><span class="tool">Hotmart</span></td>
+            <td><span class="priority p-baixa"><span class="priority-dot"></span>Baixa</span></td>
+            <td class="error-cell">Aceitar qualquer afiliado sem filtrar quem tem audiência qualificada.</td>
+          </tr>
+          <tr>
+            <td class="cb"><input type="checkbox"></td>
+            <td><div class="task-name">Fazer compra de teste completo</div><div class="task-desc">Use o modo sandbox da Hotmart para simular uma compra real do início ao fim: checkout → email → acesso à área de membros.</div></td>
+            <td class="time">⏱ 30min</td>
+            <td><span class="tool">Hotmart Sandbox</span></td>
+            <td><span class="priority p-alta"><span class="priority-dot"></span>Alta</span></td>
+            <td class="error-cell">Descobrir erros técnicos somente depois de vender para clientes reais.</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+  <!-- ===== FASE 3 ===== -->
+  <div class="phase-section" id="fase3">
+    <div class="phase-header">
+      <div class="phase-num" style="--phase-color:var(--phase3)">3</div>
+      <div>
+        <div class="phase-title">Página de Vendas</div>
+      </div>
+      <div class="phase-count">8 tarefas · Semanas 2–3</div>
+    </div>
+    <div class="table-wrap">
+      <table>
+        <thead><tr>
+          <th style="width:36px">Status</th>
+          <th style="width:200px">O que fazer</th>
+          <th style="width:90px">Tempo est.</th>
+          <th style="width:130px">Ferramenta</th>
+          <th style="width:90px">Prioridade</th>
+          <th>Erro comum</th>
+        </tr></thead>
+        <tbody>
+          <tr>
+            <td class="cb"><input type="checkbox"></td>
+            <td><div class="task-name">Escrever a headline principal</div><div class="task-desc">Crie uma headline que contenha: quem é o avatar, qual o resultado e qual o prazo. Teste 3 versões antes de escolher.</div></td>
+            <td class="time">⏱ 2h</td>
+            <td><span class="tool">ChatGPT + Canva</span></td>
+            <td><span class="priority p-alta"><span class="priority-dot"></span>Alta</span></td>
+            <td class="error-cell">Usar headlines criativas mas que não comunicam o benefício real do produto.</td>
+          </tr>
+          <tr>
+            <td class="cb"><input type="checkbox"></td>
+            <td><div class="task-name">Estruturar a oferta irresistível</div><div class="task-desc">Detalhe o produto principal + bônus + garantia com precificação empilhada. Mostre o valor total e o preço com desconto de lançamento.</div></td>
+            <td class="time">⏱ 2h</td>
+            <td><span class="tool">ChatGPT + Canva</span></td>
+            <td><span class="priority p-alta"><span class="priority-dot"></span>Alta</span></td>
+            <td class="error-cell">Apresentar o preço sem antes construir valor suficiente na página.</td>
+          </tr>
+          <tr>
+            <td class="cb"><input type="checkbox"></td>
+            <td><div class="task-name">Inserir provas sociais reais</div><div class="task-desc">Colete pelo menos 5 depoimentos em vídeo ou texto de pessoas que já testaram o método (beta, versão anterior ou nicho similar).</div></td>
+            <td class="time">⏱ 3h</td>
+            <td><span class="tool">WhatsApp + Canva</span></td>
+            <td><span class="priority p-alta"><span class="priority-dot"></span>Alta</span></td>
+            <td class="error-cell">Usar depoimentos genéricos sem foto, nome ou resultado específico.</td>
+          </tr>
+          <tr>
+            <td class="cb"><input type="checkbox"></td>
+            <td><div class="task-name">Configurar CTA e botões de compra</div><div class="task-desc">Coloque pelo menos 3 CTAs ao longo da página (topo, meio e fim). Use cores que contrastem e texto de ação: "Quero acessar agora".</div></td>
+            <td class="time">⏱ 1h</td>
+            <td><span class="tool">Elementor / Hotmart Pages</span></td>
+            <td><span class="priority p-alta"><span class="priority-dot"></span>Alta</span></td>
+            <td class="error-cell">Ter um único botão de compra no final da página.</td>
+          </tr>
+          <tr>
+            <td class="cb"><input type="checkbox"></td>
+            <td><div class="task-name">Escrever e destacar a garantia</div><div class="task-desc">Ofereça garantia de 7 dias (mínimo legal) ou 30 dias. Destaque o selo de garantia visualmente e explique o processo de reembolso.</div></td>
+            <td class="time">⏱ 30min</td>
+            <td><span class="tool">Canva + Editor de página</span></td>
+            <td><span class="priority p-alta"><span class="priority-dot"></span>Alta</span></td>
+            <td class="error-cell">Esconder a garantia em letra miúda ou deixá-la pouco destacada.</td>
+          </tr>
+          <tr>
+            <td class="cb"><input type="checkbox"></td>
+            <td><div class="task-name">Criar seção de FAQ estratégico</div><div class="task-desc">Responda as 8–10 objeções mais comuns do seu avatar: "Serve para mim?", "Quanto tempo preciso?", "E se eu quiser reembolso?".</div></td>
+            <td class="time">⏱ 1h</td>
+            <td><span class="tool">ChatGPT + Editor de página</span></td>
+            <td><span class="priority p-media"><span class="priority-dot"></span>Média</span></td>
+            <td class="error-cell">Fazer um FAQ com perguntas que ninguém faz, ignorando as objeções reais.</td>
+          </tr>
+          <tr>
+            <td class="cb"><input type="checkbox"></td>
+            <td><div class="task-name">Revisar copy da página inteira</div><div class="task-desc">Leia a página em voz alta e peça para alguém do seu avatar ler. Elimine jargões, corrija promessas exageradas e garanta fluidez.</div></td>
+            <td class="time">⏱ 2h</td>
+            <td><span class="tool">ChatGPT + Hemingway App</span></td>
+            <td><span class="priority p-media"><span class="priority-dot"></span>Média</span></td>
+            <td class="error-cell">Usar linguagem muito formal ou acadêmica para um público que prefere algo simples.</td>
+          </tr>
+          <tr>
+            <td class="cb"><input type="checkbox"></td>
+            <td><div class="task-name">Testar versão mobile da página</div><div class="task-desc">Abra a página em 3 modelos de celular diferentes. Verifique se os botões são clicáveis, o texto é legível e os vídeos carregam.</div></td>
+            <td class="time">⏱ 1h</td>
+            <td><span class="tool">Chrome DevTools</span></td>
+            <td><span class="priority p-alta"><span class="priority-dot"></span>Alta</span></td>
+            <td class="error-cell">Lançar com a versão mobile quebrada — 70%+ do tráfego é mobile.</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+  <!-- ===== FASE 4 ===== -->
+  <div class="phase-section" id="fase4">
+    <div class="phase-header">
+      <div class="phase-num" style="--phase-color:var(--phase4)">4</div>
+      <div>
+        <div class="phase-title">Divulgação Pré-Lançamento</div>
+      </div>
+      <div class="phase-count">7 tarefas · Semanas 3–4</div>
+    </div>
+    <div class="table-wrap">
+      <table>
+        <thead><tr>
+          <th style="width:36px">Status</th>
+          <th style="width:200px">O que fazer</th>
+          <th style="width:90px">Tempo est.</th>
+          <th style="width:130px">Ferramenta</th>
+          <th style="width:90px">Prioridade</th>
+          <th>Erro comum</th>
+        </tr></thead>
+        <tbody>
+          <tr>
+            <td class="cb"><input type="checkbox"></td>
+            <td><div class="task-name">Criar conteúdo de aquecimento</div><div class="task-desc">Publique 10–15 conteúdos educativos sobre a dor do avatar nas 2 semanas antes. Eduque sem entregar a solução completa.</div></td>
+            <td class="time">⏱ 6h</td>
+            <td><span class="tool">Canva + Instagram</span></td>
+            <td><span class="priority p-alta"><span class="priority-dot"></span>Alta</span></td>
+            <td class="error-cell">Publicar conteúdo aleatório sem conexão com o produto que será lançado.</td>
+          </tr>
+          <tr>
+            <td class="cb"><input type="checkbox"></td>
+            <td><div class="task-name">Construir lista de leads qualificados</div><div class="task-desc">Crie uma landing page de captura com isca digital (PDF, mini-aula, checklist) e meta de coletar no mínimo 300 leads antes do lançamento.</div></td>
+            <td class="time">⏱ 3h</td>
+            <td><span class="tool">ConvertKit + Hotmart Pages</span></td>
+            <td><span class="priority p-alta"><span class="priority-dot"></span>Alta</span></td>
+            <td class="error-cell">Não coletar emails, dependendo apenas de redes sociais que mudam algoritmo.</td>
+          </tr>
+          <tr>
+            <td class="cb"><input type="checkbox"></td>
+            <td><div class="task-name">Criar grupo VIP no WhatsApp</div><div class="task-desc">Crie um grupo fechado para os interessados com conteúdo exclusivo, bastidores e primeiros avisos. Limite a 256 pessoas por grupo.</div></td>
+            <td class="time">⏱ 1h</td>
+            <td><span class="tool">WhatsApp + ManyChat</span></td>
+            <td><span class="priority p-media"><span class="priority-dot"></span>Média</span></td>
+            <td class="error-cell">Criar o grupo mas não nutri-lo com conteúdo, perdendo o engajamento.</td>
+          </tr>
+          <tr>
+            <td class="cb"><input type="checkbox"></td>
+            <td><div class="task-name">Montar sequência de emails de pré-venda</div><div class="task-desc">Escreva 5 emails: apresentação do problema, agravamento, solução parcial, prova social e teaser do lançamento. Espaçados em 2 dias cada.</div></td>
+            <td class="time">⏱ 4h</td>
+            <td><span class="tool">ConvertKit / ActiveCampaign</span></td>
+            <td><span class="priority p-alta"><span class="priority-dot"></span>Alta</span></td>
+            <td class="error-cell">Enviar emails frios e genéricos sem segmentação ou personalização.</td>
+          </tr>
+          <tr>
+            <td class="cb"><input type="checkbox"></td>
+            <td><div class="task-name">Produzir criativos de anúncios</div><div class="task-desc">Crie 5 peças criativas: 2 vídeos (60s e 15s), 2 imagens estáticas e 1 carrossel. Foque no problema do avatar, não no produto.</div></td>
+            <td class="time">⏱ 4h</td>
+            <td><span class="tool">Canva + CapCut</span></td>
+            <td><span class="priority p-alta"><span class="priority-dot"></span>Alta</span></td>
+            <td class="error-cell">Usar criativos com muito texto ou que focam no produto em vez da dor do cliente.</td>
+          </tr>
+          <tr>
+            <td class="cb"><input type="checkbox"></td>
+            <td><div class="task-name">Montar calendário editorial de lançamento</div><div class="task-desc">Organize dia a dia o que será publicado: stories, feed, reels, emails e lives. Use cores para categorizar tipos de conteúdo.</div></td>
+            <td class="time">⏱ 2h</td>
+            <td><span class="tool">Notion + Google Sheets</span></td>
+            <td><span class="priority p-media"><span class="priority-dot"></span>Média</span></td>
+            <td class="error-cell">Improvisar o conteúdo durante a semana de lançamento, perdendo consistência.</td>
+          </tr>
+          <tr>
+            <td class="cb"><input type="checkbox"></td>
+            <td><div class="task-name">Subir campanha de pré-aquecimento</div><div class="task-desc">Ative anúncios de tráfego para a landing page de captura com orçamento de R$30–R$50/dia pelo menos 7 dias antes do lançamento.</div></td>
+            <td class="time">⏱ 2h</td>
+            <td><span class="tool">Meta Ads / TikTok Ads</span></td>
+            <td><span class="priority p-alta"><span class="priority-dot"></span>Alta</span></td>
+            <td class="error-cell">Ativar tráfego apenas no dia do lançamento, sem tempo para o algoritmo aprender.</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+  <!-- ===== FASE 5 ===== -->
+  <div class="phase-section" id="fase5">
+    <div class="phase-header">
+      <div class="phase-num" style="--phase-color:var(--phase5)">5</div>
+      <div>
+        <div class="phase-title">Semana de Lançamento</div>
+      </div>
+      <div class="phase-count">7 tarefas · Semana 4</div>
+    </div>
+    <div class="table-wrap">
+      <table>
+        <thead><tr>
+          <th style="width:36px">Status</th>
+          <th style="width:200px">O que fazer</th>
+          <th style="width:90px">Tempo est.</th>
+          <th style="width:130px">Ferramenta</th>
+          <th style="width:90px">Prioridade</span></th>
+          <th>Erro comum</th>
+        </tr></thead>
+        <tbody>
+          <tr>
+            <td class="cb"><input type="checkbox"></td>
+            <td><div class="task-name">Abertura oficial do carrinho</div><div class="task-desc">Publique o email + stories + post de feed anunciando a abertura. Ative os anúncios de conversão para a página de vendas.</div></td>
+            <td class="time">⏱ 2h</td>
+            <td><span class="tool">Hotmart + Meta Ads</span></td>
+            <td><span class="priority p-alta"><span class="priority-dot"></span>Alta</span></td>
+            <td class="error-cell">Abrir o carrinho sem comunicar para a lista e audiência construídas.</td>
+          </tr>
+          <tr>
+            <td class="cb"><input type="checkbox"></td>
+            <td><div class="task-name">Realizar lives de lançamento</div><div class="task-desc">Faça ao menos 2 lives: uma de apresentação do produto (dia 1) e uma de últimas vagas (dia 6 ou 7). Responda objeções ao vivo.</div></td>
+            <td class="time">⏱ 4h total</td>
+            <td><span class="tool">Instagram Live / YouTube</span></td>
+            <td><span class="priority p-alta"><span class="priority-dot"></span>Alta</span></td>
+            <td class="error-cell">Fazer lives sem roteiro, perdendo o fio condutor e sem CTA claro no final.</td>
+          </tr>
+          <tr>
+            <td class="cb"><input type="checkbox"></td>
+            <td><div class="task-name">Ativar campanhas de remarketing</div><div class="task-desc">Crie audiências personalizadas de quem visitou a página de vendas mas não comprou. Invista 40% do orçamento nessa audiência.</div></td>
+            <td class="time">⏱ 2h</td>
+            <td><span class="tool">Meta Ads / Google Ads</span></td>
+            <td><span class="priority p-alta"><span class="priority-dot"></span>Alta</span></td>
+            <td class="error-cell">Gastar todo o orçamento em tráfego frio ignorando quem já demonstrou interesse.</td>
+          </tr>
+          <tr>
+            <td class="cb"><input type="checkbox"></td>
+            <td><div class="task-name">Estruturar o suporte ativo</div><div class="task-desc">Defina um canal de suporte (WhatsApp, Telegram ou email), tempo de resposta máximo de 2h e um FAQ de respostas rápidas para o time.</div></td>
+            <td class="time">⏱ 2h</td>
+            <td><span class="tool">WhatsApp + Notion</span></td>
+            <td><span class="priority p-alta"><span class="priority-dot"></span>Alta</span></td>
+            <td class="error-cell">Demorar horas para responder dúvidas durante a janela de decisão de compra.</td>
+          </tr>
+          <tr>
+            <td class="cb"><input type="checkbox"></td>
+            <td><div class="task-name">Ativar gatilhos mentais diários</div><div class="task-desc">Publique diariamente: prova social nova (dia 2), bônus surpresa (dia 3–4), contador regressivo (dia 5), urgência e escassez (dia 6–7).</div></td>
+            <td class="time">⏱ 1h/dia</td>
+            <td><span class="tool">Canva + Stories</span></td>
+            <td><span class="priority p-media"><span class="priority-dot"></span>Média</span></td>
+            <td class="error-cell">Usar urgência falsa que o mercado já identifica e que destrói credibilidade.</td>
+          </tr>
+          <tr>
+            <td class="cb"><input type="checkbox"></td>
+            <td><div class="task-name">Monitorar métricas diariamente</div><div class="task-desc">Acompanhe: visitantes na página, taxa de conversão, CPL dos anúncios, número de vendas e taxa de abandono de checkout.</div></td>
+            <td class="time">⏱ 30min/dia</td>
+            <td><span class="tool">Hotmart + Meta Ads + Google Sheets</span></td>
+            <td><span class="priority p-alta"><span class="priority-dot"></span>Alta</span></td>
+            <td class="error-cell">Não monitorar métricas e só perceber problemas quando o lançamento já acabou.</td>
+          </tr>
+          <tr>
+            <td class="cb"><input type="checkbox"></td>
+            <td><div class="task-name">Fechar o carrinho com drama</div><div class="task-desc">No último dia, envie 3 comunicados: 12h antes, 2h antes e 30 min antes do fechamento. Ative o timer real na página de vendas.</div></td>
+            <td class="time">⏱ 2h</td>
+            <td><span class="tool">ConvertKit + Deadline Funnel</span></td>
+            <td><span class="priority p-alta"><span class="priority-dot"></span>Alta</span></td>
+            <td class="error-cell">Fechar o carrinho sem avisar ou estender o prazo, destruindo a credibilidade.</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+  <!-- ===== FASE 6 ===== -->
+  <div class="phase-section" id="fase6">
+    <div class="phase-header">
+      <div class="phase-num" style="--phase-color:var(--phase6)">6</div>
+      <div>
+        <div class="phase-title">Pós-Lançamento</div>
+      </div>
+      <div class="phase-count">5 tarefas · Após lançamento</div>
+    </div>
+    <div class="table-wrap">
+      <table>
+        <thead><tr>
+          <th style="width:36px">Status</th>
+          <th style="width:200px">O que fazer</th>
+          <th style="width:90px">Tempo est.</th>
+          <th style="width:130px">Ferramenta</th>
+          <th style="width:90px">Prioridade</th>
+          <th>Erro comum</th>
+        </tr></thead>
+        <tbody>
+          <tr>
+            <td class="cb"><input type="checkbox"></td>
+            <td><div class="task-name">Executar onboarding dos alunos</div><div class="task-desc">Envie email de boas-vindas nas primeiras 30 min, apresente a comunidade e guie o aluno até a primeira vitória rápida em até 48h.</div></td>
+            <td class="time">⏱ 3h</td>
+            <td><span class="tool">ConvertKit + WhatsApp</span></td>
+            <td><span class="priority p-alta"><span class="priority-dot"></span>Alta</span></td>
+            <td class="error-cell">Sumir após a venda e deixar o aluno sem direcionamento nos primeiros dias.</td>
+          </tr>
+          <tr>
+            <td class="cb"><input type="checkbox"></td>
+            <td><div class="task-name">Coletar depoimentos e casos de sucesso</div><div class="task-desc">7 dias após o acesso, envie uma pesquisa curta (3 perguntas) e peça vídeo de 1 minuto em troca de um bônus exclusivo.</div></td>
+            <td class="time">⏱ 2h</td>
+            <td><span class="tool">WhatsApp + Google Forms</span></td>
+            <td><span class="priority p-alta"><span class="priority-dot"></span>Alta</span></td>
+            <td class="error-cell">Esperar o aluno terminar o produto para pedir depoimento — já perdeu o momentum.</td>
+          </tr>
+          <tr>
+            <td class="cb"><input type="checkbox"></td>
+            <td><div class="task-name">Apresentar oferta de upsell</div><div class="task-desc">Após 14 dias, ofereça mentoria, sessão 1:1 ou produto complementar para quem completou as primeiras etapas com resultado.</div></td>
+            <td class="time">⏱ 2h</td>
+            <td><span class="tool">Hotmart + ConvertKit</span></td>
+            <td><span class="priority p-media"><span class="priority-dot"></span>Média</span></td>
+            <td class="error-cell">Fazer upsell genérico antes do aluno ter qualquer resultado com o produto atual.</td>
+          </tr>
+          <tr>
+            <td class="cb"><input type="checkbox"></td>
+            <td><div class="task-name">Analisar métricas do lançamento</div><div class="task-desc">Documente: faturamento total, ticket médio, taxa de conversão, ROI dos anúncios, custo por venda e taxa de chargeback.</div></td>
+            <td class="time">⏱ 3h</td>
+            <td><span class="tool">Google Sheets + Hotmart Analytics</span></td>
+            <td><span class="priority p-alta"><span class="priority-dot"></span>Alta</span></td>
+            <td class="error-cell">Não documentar os resultados e cometer os mesmos erros no próximo lançamento.</td>
+          </tr>
+          <tr>
+            <td class="cb"><input type="checkbox"></td>
+            <td><div class="task-name">Planejar o próximo lançamento</div><div class="task-desc">Com base nas métricas, defina a data, meta de faturamento, melhorias no produto e estratégia para o próximo ciclo. Documente tudo.</div></td>
+            <td class="time">⏱ 3h</td>
+            <td><span class="tool">Notion + ClickUp</span></td>
+            <td><span class="priority p-media"><span class="priority-dot"></span>Média</span></td>
+            <td class="error-cell">Esperar meses para replanejar e perder o momentum gerado pela audiência atual.</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+  <div class="section-divider"></div>
+
+  <!-- ===== 10 ERROS ===== -->
+  <div style="margin-bottom: 48px;">
+    <div class="badge" style="margin-bottom: 16px">Seção Bônus</div>
+    <div class="extras-title">Os 10 Erros que Mais Destroem Lançamentos Digitais</div>
+    <p class="extras-sub">Evite esses erros e você já estará à frente de 80% dos produtores digitais iniciantes.</p>
+    <div class="errors-grid">
+      <div class="error-card">
+        <div class="number-badge">1</div>
+        <div>
+          <div class="error-card-title">Lançar sem audiência prévia</div>
+          <div class="error-card-desc">Tentar vender para uma lista ou audiência fria e pequena. Construa relacionamento por pelo menos 30 dias antes.</div>
+        </div>
+      </div>
+      <div class="error-card">
+        <div class="number-badge">2</div>
+        <div>
+          <div class="error-card-title">Produto sem promessa clara</div>
+          <div class="error-card-desc">Vender "mais conteúdo" em vez de um resultado específico. Ninguém compra método — compra transformação.</div>
+        </div>
+      </div>
+      <div class="error-card">
+        <div class="number-badge">3</div>
+        <div>
+          <div class="error-card-title">Não testar o checkout antes</div>
+          <div class="error-card-desc">Descobrir erros técnicos no meio do lançamento é catastrófico. Teste o fluxo completo pelo menos 3 vezes.</div>
+        </div>
+      </div>
+      <div class="error-card">
+        <div class="number-badge">4</div>
+        <div>
+          <div class="error-card-title">Ignorar o mobile</div>
+          <div class="error-card-desc">Mais de 70% das compras de infoprodutos acontecem via celular. Página lenta ou quebrada no mobile = vendas perdidas.</div>
+        </div>
+      </div>
+      <div class="error-card">
+        <div class="number-badge">5</div>
+        <div>
+          <div class="error-card-title">Urgência e escassez falsas</div>
+          <div class="error-card-desc">Usar timers falsos ou vagas ilimitadas chamadas de "limitadas". O mercado reconhece e isso destrói credibilidade.</div>
+        </div>
+      </div>
+      <div class="error-card">
+        <div class="number-badge">6</div>
+        <div>
+          <div class="error-card-title">Abandonar o aluno pós-compra</div>
+          <div class="error-card-desc">A maioria dos chargebacks acontece nos primeiros 3 dias por falta de comunicação. Onboarding salva vendas.</div>
+        </div>
+      </div>
+      <div class="error-card">
+        <div class="number-badge">7</div>
+        <div>
+          <div class="error-card-title">Não investir em tráfego pago</div>
+          <div class="error-card-desc">Depender 100% de tráfego orgânico limita brutalmente o alcance. Mesmo R$30/dia faz diferença enorme.</div>
+        </div>
+      </div>
+      <div class="error-card">
+        <div class="number-badge">8</div>
+        <div>
+          <div class="error-card-title">Não coletar emails</div>
+          <div class="error-card-desc">Redes sociais mudam algoritmos. Email é seu ativo próprio. Sem lista, você não tem negócio — tem hobby.</div>
+        </div>
+      </div>
+      <div class="error-card">
+        <div class="number-badge">9</div>
+        <div>
+          <div class="error-card-title">Subprecificar por insegurança</div>
+          <div class="error-card-desc">Cobrar barato demais atrai clientes difíceis e devalua o produto. Preço justo = produto sério.</div>
+        </div>
+      </div>
+      <div class="error-card">
+        <div class="number-badge">10</div>
+        <div>
+          <div class="error-card-title">Não analisar as métricas</div>
+          <div class="error-card-desc">Lançar sem medir é como dirigir vendado. Sem dados, você repete os mesmos erros em cada lançamento.</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="section-divider"></div>
+
+  <!-- ===== CRONOGRAMA 30 DIAS ===== -->
+  <div style="margin-bottom: 48px;">
+    <div class="badge" style="margin-bottom: 16px">Planejamento Estratégico</div>
+    <div class="extras-title">Cronograma Ideal de 30 Dias para Lançar</div>
+    <p class="extras-sub">Siga este roteiro semana a semana e chegue no dia do lançamento preparado e confiante.</p>
+    <div class="timeline">
+      <div class="timeline-week">
+        <div class="week-label">Semana 1<br><span style="font-size:10px;font-weight:400;opacity:0.7">Dias 1–7</span></div>
+        <div>
+          <div class="week-content-title">🏗 Fundação do Produto</div>
+          <div class="week-tasks">
+            <span>Definir promessa</span><span>Mapear avatar</span><span>Nomear produto</span><span>Estruturar módulos</span><span>Iniciar gravações</span><span>Abrir conta Hotmart</span>
+          </div>
+        </div>
+      </div>
+      <div class="timeline-week">
+        <div class="week-label">Semana 2<br><span style="font-size:10px;font-weight:400;opacity:0.7">Dias 8–14</span></div>
+        <div>
+          <div class="week-content-title">⚙️ Infraestrutura Técnica</div>
+          <div class="week-tasks">
+            <span>Finalizar gravações</span><span>Criar bônus</span><span>Subir conteúdo na Hotmart</span><span>Configurar checkout</span><span>Instalar pixel</span><span>Configurar automações</span><span>Teste completo de compra</span>
+          </div>
+        </div>
+      </div>
+      <div class="timeline-week">
+        <div class="week-label">Semana 3<br><span style="font-size:10px;font-weight:400;opacity:0.7">Dias 15–21</span></div>
+        <div>
+          <div class="week-content-title">🎯 Página e Pré-Aquecimento</div>
+          <div class="week-tasks">
+            <span>Escrever página de vendas</span><span>Revisar copy e mobile</span><span>Criar landing page de captura</span><span>Lançar isca digital</span><span>Início dos anúncios de captura</span><span>Criar grupo VIP WhatsApp</span><span>Sequência de emails</span>
+          </div>
+        </div>
+      </div>
+      <div class="timeline-week">
+        <div class="week-label">Semana 4<br><span style="font-size:10px;font-weight:400;opacity:0.7">Dias 22–30</span></div>
+        <div>
+          <div class="week-content-title">🚀 Lançamento + Fechamento</div>
+          <div class="week-tasks">
+            <span>Abertura do carrinho (dia 22)</span><span>Live de lançamento (dia 22)</span><span>Remarketing ativo</span><span>Gatilhos diários</span><span>Suporte intensivo</span><span>Live de últimas vagas (dia 28)</span><span>Fechamento + análise (dia 30)</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="section-divider"></div>
+
+  <!-- ===== STACK DE FERRAMENTAS ===== -->
+  <div style="margin-bottom: 48px;">
+    <div class="badge" style="margin-bottom: 16px">Ferramentas 2026</div>
+    <div class="extras-title">Stack Ideal por Nível de Experiência</div>
+    <p class="extras-sub">Escolha a stack certa para o seu momento e evolua gradualmente — sem gastar mais do que o necessário.</p>
+    <div class="stack-grid">
+      <div class="stack-card iniciante">
+        <div class="stack-level iniciante">🌱 Iniciante · R$0–R$200/mês</div>
+        <div class="stack-item">
+          <div class="stack-item-icon">🏪</div>
+          <div><div class="stack-item-name">Hotmart (gratuito)</div><div class="stack-item-use">Plataforma de vendas e entrega</div></div>
+        </div>
+        <div class="stack-item">
+          <div class="stack-item-icon">🎨</div>
+          <div><div class="stack-item-name">Canva Free</div><div class="stack-item-use">Criação de criativos e materiais</div></div>
+        </div>
+        <div class="stack-item">
+          <div class="stack-item-icon">📋</div>
+          <div><div class="stack-item-name">Notion Free</div><div class="stack-item-use">Organização e planejamento</div></div>
+        </div>
+        <div class="stack-item">
+          <div class="stack-item-icon">📊</div>
+          <div><div class="stack-item-name">Google Sheets</div><div class="stack-item-use">Métricas e controle financeiro</div></div>
+        </div>
+        <div class="stack-item">
+          <div class="stack-item-icon">🤖</div>
+          <div><div class="stack-item-name">ChatGPT (gratuito)</div><div class="stack-item-use">Copy, ideias e estruturação</div></div>
+        </div>
+        <div class="stack-item">
+          <div class="stack-item-icon">📱</div>
+          <div><div class="stack-item-name">CapCut Mobile</div><div class="stack-item-use">Edição de vídeo gratuita</div></div>
+        </div>
+      </div>
+      <div class="stack-card intermediario">
+        <div class="stack-level intermediario">⚡ Intermediário · R$300–R$800/mês</div>
+        <div class="stack-item">
+          <div class="stack-item-icon">📧</div>
+          <div><div class="stack-item-name">ConvertKit (Starter)</div><div class="stack-item-use">Email marketing e automações</div></div>
+        </div>
+        <div class="stack-item">
+          <div class="stack-item-icon">💬</div>
+          <div><div class="stack-item-name">ManyChat</div><div class="stack-item-use">Automação de WhatsApp/Instagram</div></div>
+        </div>
+        <div class="stack-item">
+          <div class="stack-item-icon">🎯</div>
+          <div><div class="stack-item-name">Meta Ads</div><div class="stack-item-use">Tráfego pago Facebook/Instagram</div></div>
+        </div>
+        <div class="stack-item">
+          <div class="stack-item-icon">🎨</div>
+          <div><div class="stack-item-name">Canva Pro</div><div class="stack-item-use">Criativos premium e brand kit</div></div>
+        </div>
+        <div class="stack-item">
+          <div class="stack-item-icon">⏱️</div>
+          <div><div class="stack-item-name">Deadline Funnel</div><div class="stack-item-use">Timers reais de urgência</div></div>
+        </div>
+        <div class="stack-item">
+          <div class="stack-item-icon">📹</div>
+          <div><div class="stack-item-name">Loom Pro</div><div class="stack-item-use">Gravação de aulas e tutoriais</div></div>
+        </div>
+      </div>
+      <div class="stack-card avancado">
+        <div class="stack-level avancado">🔥 Avançado · R$1.500+/mês</div>
+        <div class="stack-item">
+          <div class="stack-item-icon">🚀</div>
+          <div><div class="stack-item-name">ActiveCampaign</div><div class="stack-item-use">CRM + email marketing avançado</div></div>
+        </div>
+        <div class="stack-item">
+          <div class="stack-item-icon">📱</div>
+          <div><div class="stack-item-name">TikTok Ads</div><div class="stack-item-use">Tráfego pago TikTok + Meta Ads</div></div>
+        </div>
+        <div class="stack-item">
+          <div class="stack-item-icon">📌</div>
+          <div><div class="stack-item-name">ClickUp Business</div><div class="stack-item-use">Gestão de projetos e time</div></div>
+        </div>
+        <div class="stack-item">
+          <div class="stack-item-icon">🛒</div>
+          <div><div class="stack-item-name">Kiwify</div><div class="stack-item-use">Plataforma alternativa de vendas</div></div>
+        </div>
+        <div class="stack-item">
+          <div class="stack-item-icon">📊</div>
+          <div><div class="stack-item-name">Looker Studio</div><div class="stack-item-use">Dashboard de métricas integrado</div></div>
+        </div>
+        <div class="stack-item">
+          <div class="stack-item-icon">🎬</div>
+          <div><div class="stack-item-name">DaVinci Resolve</div><div class="stack-item-use">Edição profissional de vídeo</div></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="section-divider"></div>
+
+  <!-- ===== CONCLUSÃO ===== -->
+  <div class="conclusion">
+    <div class="conclusion-title">Agora É Hora de Executar.</div>
+    <p class="conclusion-text">
+      Você tem em mãos o mesmo roteiro que produtores digitais de sucesso levaram anos para descobrir na prática. A diferença entre quem fatura e quem sonha não é talento — é execução. <strong style="color: var(--text);">Abra esse checklist, marque a primeira tarefa e comece hoje.</strong> Cada item concluído é um passo real em direção ao seu primeiro (ou próximo) lançamento de sucesso. O mercado de produtos digitais no Brasil movimentou mais de R$15 bilhões em 2025 — e há muito espaço para quem age. Sua audiência está esperando pelo que só você pode entregar.
+    </p>
+    <div style="display:flex;gap:12px;justify-content:center;flex-wrap:wrap;">
+      <button class="cta-btn" onclick="window.print()">🖨️ Imprimir Checklist</button>
+      <button class="cta-btn" style="background: var(--surface2); border: 1px solid var(--border2);" onclick="checkAll()">✅ Marcar Todas as Tarefas</button>
+    </div>
+  </div>
+
+  <div class="footer">
+    <p>Checklist de Lançamento de Produto Digital · Edição 2026 · 42 Tarefas · 6 Fases Estratégicas</p>
+    <p style="margin-top:4px">Material para uso profissional — reprodução permitida com créditos</p>
+  </div>
+
+</div>
+
+<script>
+function checkAll() {
+  const boxes = document.querySelectorAll('input[type=checkbox]');
+  const allChecked = Array.from(boxes).every(b => b.checked);
+  boxes.forEach(b => b.checked = !allChecked);
+}
+
+document.querySelectorAll('input[type=checkbox]').forEach(cb => {
+  cb.addEventListener('change', function() {
+    const row = this.closest('tr');
+    if (this.checked) {
+      row.style.opacity = '0.55';
+    } else {
+      row.style.opacity = '';
+    }
+  });
+});
+</script>
+</body>
+</html>
